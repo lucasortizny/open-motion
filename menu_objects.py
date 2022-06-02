@@ -1,6 +1,7 @@
 import pygame
 import sys
 import main
+import checker
 
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -55,4 +56,4 @@ class Button():
 
         if self.text == 'Settings':
             pygame.quit()
-            main.checker()
+            checker.checker()
