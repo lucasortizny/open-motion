@@ -12,7 +12,7 @@ cap = cv2.VideoCapture(0)
 timer_started = False
 test_mode = False
 step = 0
-tests = [{'Tetris Hands':'NOT PASSED'},{'Right Thumb Closed':'NOT PASSED'},{'Left Thumb Closed':'NOT PASSED'},{'Left Index Closed':'NOT PASSED'},{'Right Index Closed':'NOT PASSED'},{'Closed Hands':'NOT PASSED'}]
+tests = [{'Tetris Hands':'NOT PASSED'},{'Right Thumb Closed':'NOT PASSED'},{'Left Thumb Closed':'NOT PASSED'},{'Right Index Closed':'NOT PASSED'},{'Left Index Closed':'NOT PASSED'},{'Closed Hands':'NOT PASSED'}]
 
 with mp_hands.Hands(
     model_complexity=0,
@@ -56,7 +56,24 @@ with mp_hands.Hands(
     if test_mode :
         cv2.putText(image,'Testing Mode',(40,50),cv2.FONT_HERSHEY_COMPLEX,1,(255,0,0),3)
         for index,test in enumerate(tests):
-            cv2.putText(image,f'{list(test.keys())[0]} : status {list(test.values())[0]}',(200,int(400*(index*0.1))),cv2.FONT_HERSHEY_COMPLEX,1,(255,0,0),3)
+          test_name = list(test.keys())[0]
+          test_value = list(test.values())[0]
+          bottomLeftCorner = (40,int(350+((index+1)*15)))
+          font = cv2.FONT_HERSHEY_COMPLEX
+          font_scale = .4
+          if test_value == 'NOT PASSED':
+            fontColor = (0,0,255)
+          else:
+            fontColor = (255,0,0)
+          cv2.putText(image,f'{test_name}: status {test_value}',bottomLeftCorner,font,font_scale,fontColor)
+
+        if hand_signs.test_for_gestures(results,image,step):
+          tests[step][list(tests[step].keys())[0]] = "PASSED"
+          step+=1
+        if step>5:
+          test_mode=False
+          continue
+        
 
 
     else:
