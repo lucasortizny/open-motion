@@ -1,6 +1,5 @@
 import pygame
 import sys
-import main
 import checker
 
 WHITE = (255,255,255)
