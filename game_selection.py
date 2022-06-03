@@ -18,7 +18,7 @@ def main():
     menu = menu_objects.Menu_Container((0,0,0),menu_dim,menu_pos)
 
 
-    button_text = ['Select Games','Settings','Exit']
+    button_text = ['Start Game','Settings','Exit']
     menu_buttons = [menu_objects.Button(button_text[i],(255,0,0),(menu_dim[0]*.8,menu_dim[1]*.2),(menu_pos[0]+60,menu_pos[1]+(i*80)+40)) for i in range(3)]
 
 

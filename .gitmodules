@@ -1,0 +1,3 @@
+[submodule "tetris-pygame"]
+	path = tetris-pygame
+	url = https://github.com/rajatdiptabiswas/tetris-pygame
