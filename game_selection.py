@@ -1,5 +1,6 @@
 import pygame
-import menu_objects 
+import menu_objects
+
 
 
 def main():

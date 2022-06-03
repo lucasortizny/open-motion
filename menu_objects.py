@@ -1,7 +1,7 @@
 import pygame
 import sys
 import checker
-import tetris
+import subprocess
 
 WHITE = (255,255,255)
 BLACK = (0,0,0)
@@ -58,4 +58,4 @@ class Button():
 
         if self.text == 'Start Game':
             pygame.quit()
-            tetris.main()
+            subprocess.call("py tetris/Tetris.py")
