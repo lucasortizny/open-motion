@@ -11,8 +11,14 @@ class TestDatabase(unittest.TestCase):
             os.remove("db1.db")
         if (os.path.exists("db2.db")):
             os.remove("db2.db")
+        if (os.path.exists("insertiontest.db")):
+            os.remove("insertiontest.db")
+        if (os.path.exists("deletiontest.db")):
+            os.remove("deletiontest.db")
         open("db1.db", "w").close()
         open("db2.db", "w").close()
+        open("insertiontest.db", "w").close()
+        open("deletiontest.db", "w").close()
     def test_createNewConnection(self):
         database = db.Database(":memory:")
         self.assertTrue(database.createNewConnection(":memory:"), sql.connect(":memory:"))
@@ -48,8 +54,28 @@ class TestDatabase(unittest.TestCase):
 
         db1.saveAndClose(db1.connection)
         db2.saveAndClose(db2.connection)
+    def test_insertGesture(self):
+        insertdb = db.Database("insertiontest.db")
+        insertdb.initializeWithDefaults("insertiontest.db")
+        insertdb.insertGesture("something1", "something2")
+        response = insertdb.obtainParameter("something1", insertdb.connection)
+        insertdb.saveAndClose(insertdb.connection)
+        self.assertEqual(response, "something2")
+    def test_deleteGesture(self):
+        deletedb = db.Database("deletiontest.db")
+        deletedb.initializeWithDefaults(deletedb.connection)
+        deletedb.insertGesture("something1", "something2")
+        deletedb.deleteGesture("something1")
+        deletedb.saveCurrentState(deletedb.connection)
+        testedvalue = deletedb.obtainParameter("something1", deletedb.connection)
+        deletedb.saveAndClose(deletedb.connection)
+        if (testedvalue != False):
+            self.fail("The deleted value is still in the database.")
+    
     def tearDown(self):
         os.remove("db1.db")
         os.remove("db2.db")
+        os.remove("insertiontest.db")
+        os.remove("deletiontest.db")
 
 unittest.main()
