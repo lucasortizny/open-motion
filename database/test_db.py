@@ -4,7 +4,10 @@ import os
 import db
 import unittest
 import sqlite3 as sql
-
+###############################################################################
+# This class is for testing the database to make sure it is fully functional.
+# Please follow Python's convention for unittesting for more information.
+###############################################################################
 class TestDatabase(unittest.TestCase):
     ##Setup needed testfiles.
     def setUp(self):

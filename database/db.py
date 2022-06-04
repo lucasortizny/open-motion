@@ -1,6 +1,13 @@
 import sqlite3 as sql
 import os
 import traceback
+
+###################################################################
+# When initializing ANY operation onto the database.
+# Instantiate a Database object. If a function requires 
+# a connection parameter, pass self.connection as the connection. 
+###################################################################
+
 class Database:
 	def __init__(self, connection):
 		self.connection = self.createNewConnection(connection)
