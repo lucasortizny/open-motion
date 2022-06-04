@@ -48,7 +48,7 @@ class Database:
 
 		self.saveCurrentState(con)
 		return True
-	##Function take in the parameter and does a table lookup to return the appropriate equality. If found, returns the equality. If not, returns False.
+	##Function take in the parameter and does a table lookup to return the appropriate equality. If found, returns the value. If not, returns False.
 	def obtainParameter(self, parameters, connection):
 		try:
 			cur = connection.cursor()

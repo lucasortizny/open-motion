@@ -6,6 +6,7 @@ import unittest
 import sqlite3 as sql
 
 class TestDatabase(unittest.TestCase):
+    ##Setup needed testfiles.
     def setUp(self):
         if (os.path.exists("db1.db")):
             os.remove("db1.db")
@@ -19,10 +20,11 @@ class TestDatabase(unittest.TestCase):
         open("db2.db", "w").close()
         open("insertiontest.db", "w").close()
         open("deletiontest.db", "w").close()
+    #Test the createNewConnection function
     def test_createNewConnection(self):
         database = db.Database(":memory:")
         self.assertTrue(database.createNewConnection(":memory:"), sql.connect(":memory:"))
-    
+    #Test the Initialization with all default values to see if it is one-to-one with manual instructions to do so.
     def test_initializeWithDefaults(self):
         db1 = db.Database("db1.db")
         db2 = db.Database("db2.db")
@@ -46,14 +48,12 @@ class TestDatabase(unittest.TestCase):
         cur1.execute('''CREATE TABLE tables (gesturename text, gesturedata blob)''')
         cur1.executemany('''INSERT INTO tables values (? , ?)''', dbparamscheck)
         db1.saveCurrentState(db1.connection)
-
         ##Now to fetch parameters to make sure they are equal.
         for pair in dbparamscheck:
             self.assertEqual(db1.obtainParameter(pair[0], db1.connection), db2.obtainParameter(pair[0], db2.connection))
-            
-
         db1.saveAndClose(db1.connection)
         db2.saveAndClose(db2.connection)
+    #Test the Insertion operation in the database. 
     def test_insertGesture(self):
         insertdb = db.Database("insertiontest.db")
         insertdb.initializeWithDefaults("insertiontest.db")
@@ -61,6 +61,7 @@ class TestDatabase(unittest.TestCase):
         response = insertdb.obtainParameter("something1", insertdb.connection)
         insertdb.saveAndClose(insertdb.connection)
         self.assertEqual(response, "something2")
+    #Test the Deletion of an object in the database. 
     def test_deleteGesture(self):
         deletedb = db.Database("deletiontest.db")
         deletedb.initializeWithDefaults(deletedb.connection)
@@ -71,7 +72,7 @@ class TestDatabase(unittest.TestCase):
         deletedb.saveAndClose(deletedb.connection)
         if (testedvalue != False):
             self.fail("The deleted value is still in the database.")
-    
+    #Remove test files. 
     def tearDown(self):
         os.remove("db1.db")
         os.remove("db2.db")
