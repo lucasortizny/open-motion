@@ -21,6 +21,33 @@ that this is how game development should be approached. It's less about a develo
 they feel that they don't have a deep understanding of the tech needed to implement said ideas. 
 
 
+In order to run our program install the requirements.txt. Then execute the mainlogic.py file.
+
+
+Once in the program, there are three options. You can go to the prebundled game, which is tetris, you can go to the testing screen, or you can exit the program.
+
+
+
+
+The testing screen is where a user can see whether or not their gestures pass the gesture test. They can run tests against their gestures to see whether or not they
+pass the test. This is a great way to speed up development to see if there are any kinks in the product. In the checker.py file, where the test lives, you can see
+the tests objects. This is for displaying the results of the tests on the screen. Change the object in order to see the results of different tests. The actual logic for the tests are handled elsewhere, in the hand_signs.py file.
+
+
+In hand_signs.py you can find the test_for_gestures method. Here you need to simply apply the geometric tests to pass in order to verify that a hand gesture has been
+made. In this V1, we have not added the full database of different gestures, but we have a few defaults packed in. Edit them with your geometric positions, and that is all.
+
+
+Loading in a game is quite simple too. In V1, he have hard coded the actions into the tetris file, but in V2, we plan to have the hand gestures as an abstracted layer over the game object, making it even easier to sideload games. Simply drop your project into a folder, change where the menu_objects points to (it's the last line).
+
+
+In order to add motion controls to your game, all you need to do is add our boilerplate code to the game, in the main execution loop. 
+
+
+
+
+
+
 
 
 
