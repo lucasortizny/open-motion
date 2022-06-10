@@ -20,9 +20,9 @@ and allows for minimal effort from our end user. They can focus on the game deve
 that this is how game development should be approached. It's less about a developer questioning the ability to execute what idea they have in their head because
 they feel that they don't have a deep understanding of the tech needed to implement said ideas. 
 
-#RUNNING OUT PROJECT
+# RUNNING OUT PROJECT
 In order to run our program install the requirements.txt. Then execute the mainlogic.py file.
-#IT WILL NOT WORK IF ANOTHER PROGRAM IS USING YOUR WEBCAM
+# IT WILL NOT WORK IF ANOTHER PROGRAM IS USING YOUR WEBCAM
 
 
 Once in the program, there are three options. You can go to the prebundled game, which is tetris, you can go to the testing screen, or you can exit the program.
